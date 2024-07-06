@@ -1,0 +1,905 @@
+\documentclass[a4,10pt]{report}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{multicol}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage[letterspace=115]{microtype}
+\usepackage{csquotes}
+\usepackage{multirow}
+\usepackage{textcmds}
+\AtBeginDocument{\renewcommand{\bibname}{Citations}}
+\usepackage{listings}
+\usepackage[]{mdframed}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\SetTracking{encoding=*, shape=sc}{115} % Adjust the value (e.g., 50) as needed
+% \usepackage[
+% backend=biber,
+% style=numeric,
+% sorting=ynt
+% ]{biblatex}
+% \addbibresource{references.bib}
+% \bibliographystyle{}
+% \bibliography{references}
+
+\input{File_Setup.tex}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\roman{subsubsection}}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+\addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+
+
+\hypersetup{
+  colorlinks,
+  citecolor=blue,
+  linkcolor=blue,
+  urlcolor=blue}
+
+% \begin{thebibliography}{9}
+% \bibitem{texbook}
+% Donald E. Knuth (1986) \emph{The \TeX{} Book}, Addison-Wesley Professional.
+
+% \bibitem{lamport94}
+% Leslie Lamport (1994) \emph{\LaTeX: a document preparation system}, Addison
+% Wesley, Massachusetts, 2nd ed.
+% \end{thebibliography}
+
+\begin{document}
+\fontfamily{phv}\selectfont
+\begin{titlepage}
+
+\vspace{40mm}
+
+	\centering
+
+    \includegraphics[scale=1.2]{Graphics/Solinas_Logo.png}
+    
+	\vspace{-0.8cm}
+
+
+	{\huge \bfseries Product Design Challenge \par}
+	%%%% PROJECT TITLE
+	{\huge Inter IIT Tech Meet 12.0\par}
+        \vspace{1cm}
+	\begin{center}
+	    \includegraphics[width=14cm]{Graphics/FullCAD.png}
+	\end{center}
+        \vspace{1cm}
+	{\scshape\Large \textbf{Design Report}\par}
+	\vspace{0.5cm}
+	{\scshape\Large \textbf{Team 80}\par}
+
+
+        \newpage
+
+
+\vfill
+% Bottom of the page
+\end{titlepage}
+
+\section*{Link to F3D File}
+\href{Link}{https://drive.google.com/file/d/15-BDdHh_MH6clHIL6cq3OgDC-u8pACr3/view}
+
+\section*{Executive Summary}
+The primary objective of this project was to conceptualize and design an innovative agitator for household wastewater. The emphasis was on designing a robust and portable shaft for the agitator, with the ultimate goal of creating a solution that is not only efficient but also suitable for deployment in India. This design endeavor is motivated by a broader societal aim – the eradication of manual scavenging. By developing a practical and affordable agitator mechanism, the intention was to contribute to improved wastewater management practices in households across rural India, thereby mitigating the need for manual scavenging and fostering sustainable sanitation solutions.
+\vspace{2mm} \\
+The design of the shaft focused on creating a retractable and expandable mechanism, allowing for a length to vary from 1 meter to 5 meters. The choice of material for the shaft is stainless steel 304, selected for its inherent strength and resistance to corrosion, particularly crucial when dealing with the corrosive nature of toxic chemicals present in the slurry water. The process involved extensive research, not only in the construction of the shaft but also in developing the impeller and control system. This comprehensive approach aimed to ensure that the agitator could withstand the challenging conditions posed by the toxic slurry water, emphasizing durability, functionality, and resilience in its design.
+\vspace{2mm} \\
+Consequently, the design of the shaft was meticulously developed to incorporate a remarkable depth capability. Rigorous efforts were invested in fortifying the agitator's structural integrity, subjecting it to a series of tests through simulation software to ensure robustness and portability. Simultaneously, the impeller underwent a meticulous design process, optimizing its shape to achieve optimal performance in the agitation of wastewater. Furthermore, a concerted effort was made to manage the overall weight of the shaft, ensuring that the shaft remained under 30 kilograms for enhanced maneuverability and operational efficiency. Additional measures were implemented to guarantee the system's resilience, with particular emphasis on waterproofing and sparkproofing achieved through the strategic integration of wiper seals and bearings.
+\vspace{1cm}
+\begin{center}
+    \includegraphics[width=6cm]{Graphics/Full_iso.png} \\
+    \normalsize{CAD of the agitator} 
+\end{center}
+
+\newpage
+
+% \pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+% \pagebreak
+
+%\setcounter{tocdepth}{1}
+% \tableofcontents
+
+\newpage
+
+% \begin{multicols}{2}
+
+\chapter{Introduction}
+
+\section{Wastewater Management Landscape in India}
+
+Wastewater characteristics depend largely on the mass loading rates flowing from the various sources in the collection system. The flow in sanitary sewers is a composite of domestic and industrial wastewater. \\
+Industrial wastewater represents the discharges of manufacturing processes, including petrochemical, textile, electroplating, pharmaceutical, and food. It has very variable quality and volume depending on the type of industry producing it. It may be highly biodegradable or not at all and may or may not contain compounds recalcitrant to treatment. 
+\vspace{2mm} \\
+Domestic wastewater is composed of almost 99.9\% of water along with relatively small concentrations of organic and inorganic solids in dissolved or suspended form. The content mainly consists of organic substances such as synthetic detergents, fats, soaps, lignin, carbohydrates, and proteins. In addition to the organic constituents, domestic wastewater contains a portion of inorganic substances including certain heavy metals like lead, cadmium, mercury arsenic, copper, chromium, and zinc. These toxic elements might be present within their permissible limit as directed by the WHO but still need to be processed. 
+\vspace{2mm} \\
+The density of household slurry is around $1.4 g/cm^3$ and viscosity is $0.05 Pa-s$. \cite{THOTARADHAKRISHNAN2018235} 
+\vspace{2mm} \\
+Septic tank cleaning is a crucial maintenance process aimed at removing accumulated solids and floating scum from the tank to ensure its optimal performance. Over time, solid waste settles at the bottom of the tank, forming sludge, while lighter materials like grease and oils float to the top as scum. To initiate the cleaning process, professional technicians use specialized equipment, such as vacuum trucks equipped with powerful pumps. \\
+
+\begin{center}
+    \includegraphics[width=12cm]{Graphics/septic tank.png} \\
+    Fig 1.1: Structure of a Septic Tank \\
+\end{center}
+
+The first step involves locating and accessing the septic tank. Once accessed, the technicians pump out the liquid contents, including the sludge and scum layers. Agitation of the wastewater is then employed to disturb and break up settled solids. This process enhances the removal efficiency during pumping. Mechanical devices, like agitators or high-pressure water jets, can be introduced to the tank to stir and suspend the contents, facilitating their removal. 
+\vspace{2mm} \\
+After agitation, the loosened contents are thoroughly pumped out, ensuring that the tank is cleaned effectively. Regular septic tank cleaning, typically recommended every 3-5 years, helps prevent clogs, system failures, and environmental contamination, maintaining the longevity and efficiency of the septic system. Most of the agitator technologies used in India are either extremely expensive or are not effective enough. This creates a need for manually scavenging the slurry that is left unagitated at the bottom of septic tanks. 
+\vspace{2mm} \\
+As per a July 2023 report by the Social Justice Ministry, only 66\% of districts in the country are free of manual scavenging.\cite{manual_scavenging} In many areas, especially in rural and economically disadvantaged regions, there is limited access to or affordability of advanced technologies for wastewater treatment. Manual scavenging may persist due to the absence of mechanized equipment.
+
+\section{Current Technology}
+Commencing in the early 1900s, wastewater treatment initiatives were primarily directed toward the elimination of suspended particulate matter, the treatment of biodegradable compounds, and the eradication of microorganisms.
+\vspace{2mm} \\
+%The primary approach to wastewater disposal in urban centers involves releasing it into surface water bodies, while suburban and rural regions commonly utilize subsurface disposal methods. Regardless of the method, wastewater necessitates purification or treatment to safeguard public health and maintain water quality. The removal of suspended particles and biodegradable organics is imperative to varying degrees. Pathogenic bacteria must be eradicated, and there may be a need to eliminate nitrates and phosphates (plant nutrients) while neutralizing or eliminating industrial wastes and toxic chemicals. \\
+Conventional industrial wastewater management processes are listed below.
+\begin{center}
+    \includegraphics[width=16cm]{Graphics/Processes.png} \\
+    Fig 1.2: Wastewater Management Processes \\
+\end{center}
+
+After this foundational period, the evolution of treatment processes has been characterized by a concerted effort to preserve the aesthetic integrity of the environment and mitigate the adverse impact on human health. Advanced research endeavors have systematically explored a spectrum of physical, chemical, and biological methodologies, culminating in the synthesis of hybrid approaches that amalgamate two or more distinct processes. This strategic integration serves to augment operational efficiency and amplify recovery rates significantly.
+\vspace{2mm} \\
+An example of such a contemporary system that practices these evolutionary ideas can be the Solinas HomoSEP. By focusing on the inclusion of robot sterilization, it enhances safety and hygiene by eliminating human entry into manholes, and reducing risks associated with the handling of septic tank contents. The system ensures accurate quantification of homogenized slurry, promoting precision in the treatment process.\cite{homosep}
+
+\begin{center}
+    \includegraphics[width=12cm]{Graphics/HomoSEP.png} \\
+    
+    Fig 1.3: Solinas HomoSEP \\
+\end{center}
+
+
+
+\section{Challenges}
+Existing wastewater treatment practices encounter multifaceted challenges impeding resource recovery from industrial wastewater. 
+\vspace{2mm} \\
+Complicated procedures result in low quantitative resource recovery, leading to elevated expenditure costs. \\ 
+
+The presence of environmental pollutants in low-quality resources poses risks, and occupational health impacts on wastewater treatment plant personnel arise from exposure to hazardous compositions and secondary pollutants during processing. 
+\vspace{2mm} \\
+Presently, wastewater treatment processes are characterized by machinery with substantial power consumption, resulting in a considerable carbon footprint that adversely affects the environment. Moreover, a majority of these apparatus exhibit a notable mass, necessitating the use of heavy machinery for both operation and transportation. This highlights a need for the development of wastewater treatment mechanisms that can address the dual challenges of efficient transportability and environmental sustainability. \\
+
+\section{Goals}
+Our objective is to develop an innovative mechanical product design of an agitator that will be dedicated to the task of homogenizing solid material or waste with liquid substances like water or wastewater and aligns with the organization's commitment to sustainability in the realm of water contamination and problems related to manual scavenging. 
+\vspace{2mm} \\
+Given the specified dimensions of the tank, our task involves constructing an agitator featuring a retractable and extendable shaft with a minimum length of 1 meter and a maximum length of 5 meters, with the overarching objective of achieving a balance between robustness and lightweight construction, ideally not exceeding 40 kilograms to withstand the forces exerted by the dense slurry water. To ascertain its strength, we plan to conduct simulations using software tools such as \textbf{Fusion 360}, \textbf{SolidWorks}, and \textbf{ANSYS}. 
+\vspace{2mm} \\
+In our pursuit of creating a portable agitator, we aim to employ the most suitable materials and design an outer structure that maximizes space efficiency. Simultaneously, we are committed to ensuring user-friendly operation by incorporating a single-button control mechanism for both retraction and contraction. Safety and reliability are paramount considerations in our design, necessitating features such as corrosion due to toxic chemicals in wastewater. Additionally, we plan to integrate bearings and seals into the system to prevent the infiltration of fluids, thereby enhancing the overall integrity of the agitator.
+
+\newpage
+
+% \end{multicols}
+\chapter{Design}
+\section{Design Objectives}
+\textbf{Depth Capability} is required to build an agitator shaft with a length of 1 meter, engineered to possess the capability of extending up to 5 meters to meet the specific design requirements. To meet the \textbf{flexibility} criteria, the shaft must demonstrate both strength and flexibility to endure substantial forces and torques that will impact it during agitation in a septic tank of the given size. It is ensured that the shaft would withstand the forces and torques by carrying out simulations on software like Fusion 360, SolidWorks, and Ansys. To minimize power loss and enhance the overall portability of the system, we had to devise a design strategy that prioritizes \textbf{lightweight} construction while simultaneously ensuring the maintenance of strength, thereby striking a balance between efficiency and structural integrity. We had aimed to build the machinery such that it weighs less than 40 kilograms and is highly space-efficient without compromising on strength. 
+\vspace{2mm} \\
+To bring \textbf{Controllability} to the system, it is crucial to establish a controlling mechanism that is not only easily manageable but also ensures precision and reliability. This is essential to guarantee that the required length can be attained consistently and with utmost accuracy throughout the operation of the system with the help of only a single button for both the retraction and extraction process. It is paramount to implement a comprehensive \textbf{safety} protocol throughout the entire system to guarantee that the design is not only practical but also aligns with the organizational requirements, thereby ensuring its usability and suitability for the intended purposes within the organization. Additionally, the design should be \textbf{cost-effective} to the extent that it renders it financially accessible for deployment in rural areas, thereby facilitating its practical utilization in such regions. The design must exhibit a sturdy \textbf{resistance to potential damage} caused by the presence of toxic chemicals present in the wastewater within the tank. This resilience is essential to ensure that the system can endure and operate effectively over an extended period, thereby necessitating minimal maintenance efforts.
+
+\subsection*{Design Table}
+
+The \textbf{Analytic Hierarchy Process} (AHP) is a decision-making methodology that systematically evaluates and prioritizes multiple criteria in complex situations. It employs a hierarchical structure to break down a problem into manageable components. Decision-makers assign pairwise comparisons and relative importance to each criterion, generating a matrix. Through mathematical computations, AHP calculates weighted priorities, facilitating the selection of the most favorable alternative. This method enhances decision-making by providing a structured approach to quantify and compare subjective judgments, fostering a more rational and informed decision process across diverse criteria.
+\begin{center}
+\scriptsize{
+\begin{tabular}{ | c | c | c | c | c | c | c | c | c | c |}
+    \hline
+    & Depth & Strength & Weight & Safety & Damage-Resistant & Cost & Controllable & Total & Weight \\
+    \hline
+    Depth & 1 & 3 & 3 & 3 & 5 & 7 & 7 & 29 & 0.314 \\
+    Strength & 0.33 & 1 & 1 & 1 & 3 & 5 & 5 & 16.33 & 0.177 \\
+    Portability & 0.33 & 1 & 1 & 1 & 3 & 5 & 5 & 16.33 & 0.177 \\
+    Safety & 0.33 & 1 & 1 & 1 & 3 & 5 & 5 & 16.33 & 0.177 \\
+    Damage-Resistant & 0.2 & 0.33 & 0.33 & 0.33 & 1 & 3 & 3 & 8.2 & 0.089 \\
+    Affordability & 0.14 & 0.2 & 0.2 & 0.2 & 0.33 & 1 & 1 & 3.07 & 0.033 \\
+    Controllable & 0.14 & 0.2 & 0.2 & 0.2 & 0.33 & 1 & 1 & 3.07 & 0.033 \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.1: AHP transforms qualitative terms into mathematical values}
+}
+\end{center}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline 
+        Requirement & Importance & Specification & Target Value \\
+        \hline 
+        Depth & 0.314 & Length Extension & 5 meters \\
+        Strength & 0.177 & Support Force & 450 Newtons \\
+        Portability & 0.177 & Weight & 30 kilograms \\
+        Safety & 0.177 & Safety Factor & 1.5 \\
+        \hline
+    \end{tabular} \\
+    \normalsize{Table 2.2: Design Constraints}
+\end{center}
+
+\section{Methodology}
+\begin{center}
+    \includegraphics[width=14cm]{Graphics/1.png} \\
+    Fig 2.1: Work Flow of the Designing Process \\
+\end{center}
+
+% \begin{multicols}{2}
+
+\section{Concept Selection}
+Following an extensive research phase and collaborative brainstorming sessions focused on diverse designs for the extendable shaft, we generated a range of alternatives. Subsequently, we meticulously evaluated each design against multiple criteria, ultimately selecting the one that demonstrated superior performance across all relevant factors for optimal functionality as an agitator.
+
+\subsection{Pulley-Cable Transmission with Telescopic Design}
+As the rope is tugged, the pulley turns. The force on the rope travels around the pulley to the other end of the rope, so the pulley changes the direction of the force.\cite{pulley_cable} \\     
+\begin{center}
+    \includegraphics[width=5cm]{Graphics/Pulley_Mechanism.jpg} \\
+    \normalsize{Fig 2.2: Pulley cable mechanism enables controlled linear motion in telescopic cylinders}
+\end{center}
+The telescopic shaft comprises an outer part in the form of a sleeve and an inner part in the form of a shaft portion. The inner part adjustably enters a bore of the outer part in the direction of the common longitudinal axis of both parts. To extend the impeller by 5 meters from its initial height of 1 meter, any telescopic design necessitates the incorporation of a \textbf{minimum of six stages} to facilitate a seamless and effective extension. 
+\vspace{2mm} \\
+Incorporating this design mandates the installation of a pulley and cable system positioned atop the inner rim of each cylinder. It's important to note that this addition will lead to an enlargement of the overall dimensions of the cylinders, resulting in a design characterized by increased \textbf{bulkiness}. An alternative approach involves reducing the thickness of the cylinders, consequently diminishing the strength of the entire structure. To induce rotation in the impeller, we have the option of either situating the motor above ground and rotating the entire mechanism or lowering both the motor and the mechanism. In this case, due to the bulky design, it is neither feasible to rotate the whole system nor it is safe to descend the motor below the ground into the tank of wastewater\footnote{A \textbf{flexible shaft}, often referred to as a flex shaft, is a device for transmitting rotary motion between two objects that are not fixed relative to one another. It consists of a rotating wire rope or coil which is flexible but has some torsional stiffness. There is a specific minimum bending radius at which the flexible shaft can be coiled.\cite{min_bend} That is:
+\begin{itemize}
+    \item At 3 mm diameter: 80 mm minimum bending radius
+    \item At 5 mm diameter: 150 mm minimum bending radius
+    \item At 7 mm diameter: 210 mm minimum bending radius
+    \item At 10 mm diameter: 300 mm minimum bending radius
+    \item At 15 mm diameter: 450 mm minimum bending radius
+\end{itemize}}.
+\vspace{2mm} \\
+
+In the utilization of the pulley-cable mechanism, the expansion of the shaft relies on gravity, while its retraction is achieved through the coordinated operation of the pulley and motor. The primary vertical forces consistently acting on the cylinders include the \textbf{downward-acting gravitational force, upward-acting buoyant force, and upward-acting tension} in the string. \\
+% \end{multicols}
+\begin{center}
+    \includegraphics[width=14cm]{Graphics/Buoyancy_Graph.png} \\
+    \normalsize{Fig 2.3: Point of Intersection (0.154, 0.03)}
+\end{center}
+\par Gravitational Force acting on a Hollow Cylindrical Shaft = $F_1$ 
+\par Buoyant Force acting on the Shaft = $F_2$
+\par Density of Material = $8000 kg/m^3$
+
+\begin{equation*}
+    \begin{split} 
+        F_1 &= \pi*((r+t)*(r+t)-r*r)*5*8000 N \\
+        F_2 &= \pi*(r+t)*(r+t)*5*1400 N \\
+    \end{split}
+\end{equation*}
+\begin{tabular}{r l}
+where &r is the inner radius of the shaft in meters \\
+&t is the thickness of the cylinder in meters \\
+\end{tabular}
+% \begin{multicols}{2}
+\par Assuming a cylinder of thickness $3 mm$, the average radius of the shaft should have to be $15.4 cm$ and the cylinder will weigh 1272 Newtons, only for the gravitational force to balance out the net buoyant force. Hence, it is clear that it is not feasible to rely on gravitational force for expanding the shaft. The cumulative buoyant force acting on the cylinders will exceed the weight of the cylinders, thereby constraining the telescopic mechanism from expanding to its ultimate length of 5 meters.
+
+\subsection{Pneumatic Telescope}
+A pneumatic telescopic cylinder is a type of cylinder that has a compact retracted length but can provide a long output travel. Telescopic cylinders are available in single and double-acting modes. \\
+\begin{center}
+    \includegraphics[width=6cm]{Graphics/Pneumatic_Telescope.png} \\
+    \normalsize{Fig 2.4: Pneumatic telescopic mechanism for linear extension of shaft}
+\end{center}
+A pneumatic cylinder is a metal cylinder that converts compressed air into linear motion. The air enters the cylinder through a cap and presses on a piston that is attached to another cylinder. There are multiple cylinders packed inside one another this way that expands the shaft.\cite{pneumatic} The benefit of this actuator compared to the hydraulic type was its simple construction that minimize the production cost of material construction and maintenance while at the same time reducing the overall length of the pneumatic cylinder when retracted and maximizing the effective length when extended. 
+\vspace{2mm} \\
+\textbf{CFM} stands for Cubic Feet per Minute. It's a measure of the amount of air that a compressor can produce at a given pressure level. CFM is an important indicator of performance. The more CFM air compressor is capable of, the greater its output.\cite{numerical_pneumatic} \\
+\begin{center}
+    % \includegraphics[width=6cm]{Graphics/Pneumatic_Valve.png} \\
+    % \normalsize{Fig: Pneumatic Valve}
+\begin{equation*}
+    \begin{split}
+        CFM &= (A*S*C)/1728 \\
+        &= (\pi*2*2*196.85*1)/1728 \\
+        &= 1.43 m^3/s \\
+        V &= CFM*1.5 \\
+        &= 1.43*1.5 gal \\
+        &= 2.15 gal = 8138 cm^3 \\
+    \end{split}
+\end{equation*}
+\begin{tabular}{c c l} 
+where &A &= Piston Area ($inch^2$) \\
+&S &= Stroke ($inch$) \\
+&C &= Cycles per minute \\
+&V &= Volume of the Pneumatic Tank Required
+\end{tabular}
+\end{center}
+\par This refers to the dimensions of the cylinder intended for above-ground placement in the pneumatic mechanism, and its considerable size diminishes the overall portability of the system.\cite{pneumatic_size_1,pneumatic_size_2} The actual control model consists of a multi-order Proportional-Integral (PI) that will control the error in displacement, velocity, and acceleration of the cylinder motion, making it difficult to implement. This will make manipulation of the length of the shaft to a certain value very difficult.
+
+\subsection{Hydraulic Telescopic Mast}
+A hydraulic telescopic cylinder is a single-acting cylinder that can push outwards using hydraulic pressure. It's made up of two or more nested tubes, called stages, that decrease in diameter from the outer barrel. The mechanism operates using hydraulic fluid, typically oil, which is stored in a reservoir. A hydraulic pump pressurizes the fluid and sends it through hydraulic lines to the telescopic cylinder.\cite{hydraulic}
+\begin{center}
+    \includegraphics[width=12cm]{Graphics/Hydraulic_Telescope.png} \\
+    Fig 2.5: Working of a Hydraulic Cylinder \\
+\end{center}
+Hydraulic telescopic cylinders are more \textbf{complex} than single-stage cylinders. The presence of multiple stages and components increases the chances of wear and tear. Maintenance can be more intricate and may require specialized knowledge. The use of multiple seals and joints in a telescopic cylinder increases the risk of \textbf{hydraulic fluid leakage}. This can lead to environmental concerns, reduced efficiency, and the need for more frequent maintenance. 
+\vspace{2mm} \\
+Telescopic cylinders are sensitive to side loads, which can occur if the load is not evenly distributed or if there is misalignment. Side loading can lead to increased wear, reduced efficiency, and potential damage to the cylinder. Also, as the number of stages increases, the load capacity of a telescopic cylinder may decrease when fully extended. This is due to the reduction in the effective piston area at each stage. It's important to consider load capacity limitations at different extension lengths. Telescopic cylinders may experience more vibration and oscillation, especially at extended lengths. This can affect the stability and performance of the equipment, particularly in operations where precision is crucial.
+
+\subsection{Scissor Lift Mechanism}
+The scissor mechanism can also be used to get an extension and retraction ratio of \textbf{5:1}. This structure can compress or extend like an accordion inspired by the scissor jack used to lift cars, forming a characteristic rhomboidal pattern. A scissor mechanism operates on the principle of a set of linked, folding supports arranged in a crisscross "X" pattern. When the supports are extended, the impeller descends vertically.\cite{scissor_jack_1} We can control the scissor mechanism by using a \textbf{hydraulic piston} or \textbf{lead screw}. The greater the number of scissors employed in the mechanism, the greater the force needed for both expansion and contraction. To reduce the number of scissors, it is necessary to increase the maximum angle that each scissor achieves in the expanded position. 
+\vspace{2mm} \\
+If the maximum angle of the scissors is elevated or the quantity of scissors within the chain is substantial, it will result in weakened structural integrity. To maintain the strength of the structure, the maximum angle must be around \textbf{45 degrees}. By the physical limitations of the model, the scissors can achieve a minimum 8\degree angle. As the tank has a diameter of $40 cm$, the horizontal length of the scissor must be less than $40 cm$ at all times.\cite{scissor_jack_2} Considering, the length of each scissor (l) to be $33 cm$:\\ 
+
+\begin{center}
+    \includegraphics[width=7cm]{Graphics/Scissor_Retracted_Out.png}
+    \includegraphics[width=7cm]{Graphics/Scissor_Retracted_In.png} \\
+    \normalsize{Fig 2.6: Scissor structure at maximum possible contraction; minimum length} \\
+    \vspace{0.4cm}
+    \includegraphics[width=7cm]{Graphics/Scissor_Expanded_Out.png}
+    \includegraphics[width=7cm]{Graphics/Scissor_Expanded_In.png} \\
+    \normalsize{Fig 2.7: Scissor structure at maximum possible extension; maximum length } \\
+    \vspace{0.8cm}
+    \begin{tabular}{r l}
+    Number of scissors (n) &= 19 \\
+    Retracted Height &= $n*l*sin(\theta_min)$ \\
+    &$= 19*0.33*sin(8.17\degree)$ \\
+    &$= 0.89 m$ \\
+    Expanded Height &= $n*l*sin(\theta_max)$ \\
+    &$= 19*0.33*sin(54\degree)$ \\
+    &$= 5.07 m$
+    \end{tabular}
+\end{center}
+
+A challenge analogous to the pulley-cable system arises in the scissor mechanism, where rotating the entire structure is not feasible owing to its intricate design.
+
+\subsection{Lead Screw Telescopic Mast}
+A lead screw is a type of screw that is used as a linear actuator to \textbf{translate rotational motion into linear motion}. It typically consists of a screw (threaded rod) and a nut. The screw has a helical thread, and the nut has corresponding threads that match the screw. When the screw is rotated, the nut moves linearly along the threads, causing linear motion. The lead-screw telescopic mechanism is a system that facilitates the extension and retraction of a shaft through the utilization of a \textbf{lead screw}, causing telescopic cylinders to undergo linear motion relative to each other. This mechanism is characterized by interconnecting various stages of the telescope, with each stage being linked to another through \textbf{threaded connections}. Notably, the inner cylinders are equipped with threads on their outer surfaces, while the outer cylinders feature threads on their inner surfaces.\cite{lead_screw}
+\vspace{2mm} \\
+
+\begin{center}
+    \includegraphics[width=10cm]{Graphics/Lead_Screw_Expanded.png} \\
+    \includegraphics[width=10cm]{Graphics/Lead_Screw_Retracted.png} \\
+    \normalsize{Fig 2.8: Rotation of Screw at the Appex markets the system expand or contract}
+\end{center}
+Upon assembly, the cylinders are configured in a manner that enables the rotation of one inner cylinder to induce a movement in the connected outer cylinders through the threaded connections. Consequently, as one inner cylinder rotates, the outer cylinders associated with it move away, driven by the threading mechanism. The subsequent inner cylinder, which is in contact with the outer cylinder, propels it along a linear groove, resulting in the rotation of both the inner and outer cylinders in tandem. This intricate system, comprised of \textbf{multiple interconnected cylinders}, operates cohesively to facilitate the extension of the shaft. The number of stages of cylinders utilized in the design dictates the extent to which the shaft will extend, making the lead-screw telescopic mechanism a \textbf{versatile} and adjustable engineering solution. 
+\vspace{2mm} \\
+The depth capability exhibited by this particular design is noteworthy, primarily since the extent of shaft extension is solely contingent upon the number of cylindrical stages incorporated into the system. It is noteworthy to emphasize that the retracted length of the shaft remains entirely independent of the number of stages employed in the system, thereby underscoring the design's inherent versatility and consistent performance across various configurations. The simplicity of this design is noteworthy, allowing for an extension of any number of stages, limited only by the permissible size constraints. Furthermore, its \textbf{lightweight} nature is a distinct advantage, given that it doesn't necessitate the incorporation of additional external components for the extension mechanism. This inherent simplicity and adaptability contribute to the versatility and ease of implementation of the design across a range of applications. Operating based on a singular rotating screw, this mechanism facilitates the seamless expansion or retraction of the entire system, thereby ensuring a \textbf{user-friendly} and straightforward operation. It reaches great depths effortlessly and reliably. 
+\vspace{2mm} \\
+The ease of rendering this design both \textbf{waterproof} and \textbf{sparkproof} is notable, as it obviates the need for the motor or any electronic component to be immersed in the slurry. The design's inherent resistance to sparks is predominantly ensured by the careful selection of materials for the shaft, while the incorporation of seals, such as the \textbf{wiper seal}, serves to fortify its waterproof properties, safeguarding against the intrusion of water and thereby enhancing its overall resilience and safety features. Given that this design doesn't necessitate the use of substantial machinery for the extension and retraction processes, it stands out as a \textbf{cost-effective} solution. Its affordability is particularly notable, encompassing only the expenses associated with the materials utilized and the manufacturing of the shaft, thereby making it an economically viable option for various applications. In contrast to designs that incorporate cables or intricate mechanisms susceptible to breakage, this particular design prioritizes robustness by avoiding such delicate components, thus safeguarding structural strength. Furthermore, it deviates from conventional telescopic mechanisms that typically rely on a single cylindrical layer externally to support the entire system. Instead, this innovative design incorporates a minimum of two layers of cylinders at all times, enhancing and distributing the structural strength across multiple components, ensuring \textbf{reliability and durability} in its operation.
+% \end{multicols}
+
+\subsection{Selection Criteria}
+Based on previously calculated weights for each criterion, we analyze all designs accordingly in the following table: \\
+\begin{center}
+\scriptsize{
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline 
+        Requirement & Weightage & Pulley & Pneumatic & Hydraulic & Scissor & Lead-Screw \\
+        \hline 
+        Depth & 0.314 & 1 & 4 & 4 & 5 & 5 \\
+        Strength & 0.177 & 4 & 3 & 4 & 3 & 5 \\
+        Portability & 0.177 & 5 & 3 & 4 & 5 & 5 \\
+        Safety & 0.177 & 3 & 3 & 4 & 3 & 5 \\
+        Affordability & 0.033 & 5 & 4 & 4 & 5 & 5 \\
+        \hline
+        Total & 1 & 2.60 & 3.16 & 3.38 & 3.68 & 4.39 \\
+        \hline
+    \end{tabular} \\
+    \normalsize{Table 2.3: Comparison between various shaft mechanisms} \\
+}
+\end{center}
+Since the lead-screw mechanism has the highest total points, it is evident as the superior choice among all the designs under consideration.
+\subsection{Conclusion}
+The Lead-Screw mechanism distinguishes itself as the optimal design, excelling across various criteria in comparison to alternative designs. Notably, it effortlessly extends its shaft from 1 meter to 5 meters, showcasing both strength and lightweight characteristics. Its ease of integration, efficient control over shaft length accuracy, safety features, cost-effectiveness, and resistance to damage collectively position it as a superior and comprehensive solution for diverse applications. The Lead-Screw mechanism thus emerges as a versatile and top-performing design that addresses multiple considerations for effective and reliable functionality.
+
+\section{Mechanical Design}
+\begin{center}
+    \includegraphics[width=14cm]{Graphics/FullCAD_Labelled.png} \\
+    Fig 2.9: Design of the Agitator \\
+    \begin{tabular}{|r|l|l|}
+        \hline 
+        1. & Mounting System & a. Castor wheels for easy mobility \\
+        & & b. Telescopic Arms for stable placement on uneven surfaces \\
+        & & c. Strong structure \\
+        \hline
+        2. & Shaft & a. Lead-Screw Telescopic Mechanism with 1:5 extension ratio \\
+        & & b. Highly portable; Weighs under 40 kg \\
+        & & c. Wiper Seals and Bearings used for water-proofing \\
+        \hline
+        3. & Impeller & a. Propeller design improves performance in slurry water \\
+        & & b. Resistant to corrosion from toxic chemicals present in wastewater \\
+        & & c. Strong stainless steel body \\
+        \hline
+    \end{tabular} \\
+    \normalsize{Table 2.4: Agitator Components' features} \\
+\end{center}
+The lead-screw telescopic mechanism incorporated into this design comprises\textbf{six distinct stages} of cylinders, each characterized by its ability to expansively and contractively maneuver through the rotational action of the screw situated at the apex of the design, facilitated by a control motor. Notably, the dimensions of each cylinder and screw are precisely standardized, with a \textbf{length of 90 centimeters and a thickness of 3 millimeters}, while the lead screw has a \textbf{diameter of 1.2 centimeters}. This meticulous adherence to specific dimensions ensures not only the seamless extension of the shaft to lengths surpassing 5 meters but also guarantees its retractability to a minimum length of 1 meter providing \textbf{5:1 extension ratio}, thereby affirming the design's versatility and operational adaptability within the specified parameters.
+\vspace{2mm} \\
+The workflow involved a systematic process wherein an interactive approach was employed to consistently review relevant literature and \textbf{simulation software}. This was undertaken to extract the essential design parameters for both the impeller and shaft components. In instances where the outcomes of simulations and analyses did not align with the objectives of the study, the process underwent repetition. This \textbf{iterative approach} aimed to achieve a harmonious equilibrium between the findings derived from research and the outcomes generated through simulation, ensuring a thorough exploration of the design space.
+\vspace{2mm} \\
+Upon obtaining the ultimate design and dimensions for the impeller and shaft mechanism, an additional phase of investigation was undertaken to scrutinize the control mechanism. This comprehensive study involved a combination of both research and analysis, aiming to ensure that every component seamlessly aligns with the intended purpose. In cases where discrepancies or inadequacies were identified, the iterative process was reinitiated, emphasizing a persistent refinement until a cohesive alignment of all elements was achieved. Subsequently, with the attainment of a design that met the specified criteria, the construction of the final machine was commenced.
+
+\subsection{Impeller}
+Researching the impeller design was crucial in determining the forces and torques exerted on the system, essential for accurate calculations. Upon conducting extensive research and comprehensive analyses of various impeller types suitable for slurry agitation, we concluded our deliberations and finalized the design of our impeller. The decision-making process involved a thorough examination of factors such as efficiency, fluid dynamics, and performance metrics, ensuring that our chosen impeller design aligns with the specific requirements of slurry agitation. This meticulous approach and consideration of multiple variables contribute to the confidence we place in our selected impeller design, reflecting a commitment to optimal functionality and effectiveness in the intended application.\cite{type_impeller}
+\begin{center}
+    \includegraphics[width=6cm]{Graphics/imp_iso.png} 
+    \includegraphics[width=6cm]{Graphics/imp_top.png} \\
+    \normalsize{Fig 2.10: Isometric and top views of the impeller} \\
+\begin{tabular}{|c|c|}
+    \hline
+    Feature & Value \\
+    \hline
+    Weight & 0.56 kg \\
+    Diameter & 15cm \\
+    Width & 3cm \\
+    Thickness & 3mm \\
+    Moment of Inertia & $7.81*10^5 g-m^2$ \\
+    Material & Stainless Steel 304 \\
+    Type & Axial Flow Impeller \\
+    No. of Blades & 4 \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.5: Impeller Data} \\
+\end{center} 
+
+\subsubsection{Methodology}
+Our research endeavors involved a thorough exploration of diverse impeller types and their respective applications. Additionally, comprehensive simulations were conducted specifically focusing on the impeller, aiming to identify the most optimal impeller for application in wastewater agitation within the context of our agitator design. Through this extensive process, we sought to gain a nuanced understanding of the various impeller functionalities and their performance in simulated conditions, ultimately informing our decision-making to ensure the selection of the most suitable impeller configuration for effective and efficient wastewater agitation in our agitator system.
+
+\subsubsection{Types of Impellers}
+%\begin{center}
+    %\includegraphics[width=14cm]{Graphics/All_Agitators.jpg} \\ 
+    %Different types of Impellers used in Agitators
+%\end{center}
+
+\begin{center}
+    \includegraphics[width=12cm]{Graphics/table_imp.png} \\ 
+    \normalsize{Table 2.6: Different types of Impellers used in Agitators} \\
+\end{center}
+
+Axial flow impellers are highly suitable for wastewater agitation due to their design promoting efficient fluid movement along the impeller shaft axis. This directional flow minimizes turbulence, making them energy-efficient and cost-effective for large tanks in wastewater treatment. Notably, axial flow impellers produce lower shear forces, preserving the integrity of particles or biological components. Their versatility allows customization for different wastewater characteristics, and their simple design ensures reliability with minimal maintenance requirements. In summary, axial flow impellers offer effective mixing, uniform circulation, and adaptability, making them ideal for wastewater treatment applications.
+\subsubsection{Design}
+\begin{center}
+    To achieve the necessary turbulent flow for slurry agitation, the optimal ratio of impeller diameter to tank diameter should fall within the range of 0.2 to 0.5, with the ideal ratio being approximately one-third.\cite{dim_impeller_2} \\
+    \includegraphics[width=6cm]{Graphics/Impeller_Table_1.png} \\
+    Condition for Turbulent Flow \\
+    The ratio between the impeller diameter and width of the impeller should be from 5 to 8. The pitch angle must be around 45\degree. The number of blades must be 3 or 4.\cite{dim_impeller_1} \\ 
+    \includegraphics[width=6cm]{Graphics/Impeller_Table_2.png} \\
+    \normalsize{Table 2.7: Definition of various factors for Impeller Shape} \\
+    \includegraphics[width=11cm]{Graphics/Impeller_Table_3.png} \\
+    \normalsize{Table 2.8: Other Dimensions of Impeller} \\
+\end{center}
+% \vspace{2m}
+% The dimensions of our agitator based on the tank diameter is \\
+% \begin{center}
+%     \begin{tabular}{l l}
+%         Diameter of our Impeller &$= 15 cm$ \\
+%         Diameter of Impeller Shaft &$= 2 cm$ \\
+%         Width of our Impeller &$= 3 cm$ \\
+%         Thickness of our Impeller &$= 3 mm$ \\
+%         Number of Blades in our Impeller &$= 4$ 
+%     \end{tabular}
+% \end{center}
+
+\vspace{0.8cm}
+The choice of material for an agitator's impeller in wastewater applications is crucial and depends on various factors, including the specific characteristics of the wastewater, the operating environment, and the desired performance. \\
+\begin{center}
+    \includegraphics[width=8cm]{Graphics/Impeller_Strength.png} \\
+    \normalsize{Fig 2.12: Total Deformation of Impeller}
+\end{center}
+Stainless steel is a widely used material due to its corrosion resistance, durability, and strength. It is suitable for various wastewater compositions and is particularly effective in corrosive environments.
+
+\subsubsection{Performance}
+\begin{center}
+    \includegraphics[width=14cm]{Graphics/Impeller_Torque_1.png}
+    \includegraphics[width=14cm]{Graphics/Impeller_Torque_2.png} \\
+    \normalsize{Fig 2.13: Torque Experienced by the Impeller in Fluid} \\
+\end{center}
+A simulation was conducted wherein the impeller was set to rotate at a rate of 100 rotations per minute within a fluid characterized by a \textbf{density of 1.4 grams per cubic centimeter} and a \textbf{viscosity of 0.002 poise-seconds}. Subsequently, the torque exerted by the fluid on the impeller was graphically represented.\cite{torque_impeller} 
+\vspace{2mm} \\
+In the interaction between slurry water and a rotating axial flow impeller, dynamic axial and tangential flows create an intricate mixing environment. The axial motion propels the slurry either upward or downward, while the tangential flow induces a rotational vortex, fostering effective blending. This synergistic action generates shear forces, turbulence, and fluid recirculation, preventing settling and promoting consistent suspension of solid particles. 
+\begin{center}
+    \includegraphics[width=7cm]{Graphics/Impeller_Fluid_1.png}
+    \includegraphics[width=7cm]{Graphics/Impeller_Fluid_2.png} \\
+    \normalsize{Fig 2.14: Interaction of Impeller with Fluid} \\
+\end{center}
+The impeller's blades cut through the slurry, breaking down clumps and facilitating thorough mixing. Vortex formation in the center enhances material draw towards the impeller. The process dissipates energy, reducing slurry viscosity and optimizing mass transfer for efficient chemical reactions. Overall, the dynamic interplay of axial and tangential flows in conjunction with shear and turbulence ensures uniformity and homogeneity in the slurry, making it applicable across diverse industrial processes.
+
+\subsection{Shaft}
+\begin{center}
+\includegraphics[width=3cm]{Graphics/shaft_iso.png} \\
+Fig 2.15: Lead-Screw Telescopic Mechanism \\
+\vspace{2mm}
+\begin{tabular}{|c|c|}
+    \hline
+    Feature & Value \\
+    \hline
+    Weight & 27.4 kg \\
+    Moment of Inertia & $2.133*10^7 kg-m^2$ \\
+    Material & Stainless Steel 304 \\
+    Type & Lead-Screw \\
+    Extension Ratio & 1:5 \\
+    Rate of extension & 6.12 cm/rev \\
+    \hline
+\end{tabular} \\
+\vspace{1mm}
+\normalsize{Table 2.9: Shaft Dimensions} \\
+\end{center} \\
+\subsubsection{Methodology}
+Our research endeavors encompassed a comprehensive exploration of various mechanisms potentially applicable to the extension of the shaft. We delved into an exhaustive examination of their respective applications and functionalities. In parallel, we conducted a series of simulations and analyses on these diverse designs, aiming to discern the most suitable mechanism for integration into an agitator intended for wastewater applications. The simulations involved rigorous testing and evaluation, considering factors such as \textbf{efficiency}, \textbf{durability}, and overall performance. By engaging in this multifaceted approach, our objective was to identify and select a mechanism that not only aligns with the specific requirements of wastewater agitation but also demonstrates optimal functionality and resilience within the given operational parameters. \\
+\subsubsection{Design}
+After a thorough evaluation of various extendable shaft mechanisms, the lead screw mechanism emerged as the most fitting choice, garnering distinction for its superior performance across a multitude of criteria. Through a comprehensive analysis, it became evident that the lead screw mechanism consistently outperformed other alternatives, showcasing exceptional attributes in terms of efficiency, durability, and overall effectiveness. Its selection was underpinned by its ability to meet and surpass benchmarks set across a range of criteria, making it the standout choice for the extendable shaft mechanism in our agitator design. This decision reflects a nuanced consideration of various factors, affirming the lead screw mechanism as the optimal solution within the context of our specific application.
+\begin{center}
+    \includegraphics[width=5cm]{Graphics/retracted_shaft.png}
+    \includegraphics[height=11cm]{Graphics/expanded_shaft.png} \\
+    \normalsize{Fig 2.16: Retracted and Expanded View of Shaft}
+\end{center} \\ 
+% \begin{center}
+%     \includegraphics[width=15cm]{Graphics/shaftt.png} \\
+%     \normalsize{Shaft in isometric view} \\
+% \end{center} 
+
+\newpage
+\begin{enumerate}
+  
+    \item \textbf{Lead Screw} \\ 
+    
+    \begin{center}
+    \includegraphics[width=6cm]{Graphics/Sectional_View.png} \\
+    \normalsize{Fig 2.11: Sectional View of Lead-Screw} \\
+\end{center} \\
+
+\vspace{5mm}
+
+ \begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Feature & Value \\
+    \hline
+    Thread Angle & 29$^\circ$ \\
+    Pitch Length & 2.54cm \\
+    Mean Pitch Diameter & 0.5inch \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.10: Thread Data} \\
+\end{center}
+
+    
+    \textbf{Calculation of Parameters} \\ The torque required on the lead screw depends upon the dimensions of the threads on its surface.
+     \begin{itemize}
+ \item Load application-
+       F = 320 N
+       
+
+ \item Application Point - Equivalent weight applied along the surface of the screw threads.
+ 
+
+\end{itemize} \\
+
+    \begin{center}
+    \includegraphics[width=8cm]{Graphics/Torque_on_Screw.png} \\ 
+    \normalsize{Fig 2.17: Torque required to raise and lower the shaft} \\
+    \includegraphics[width=8cm]{Graphics/Screw.png} \\
+    \normalsize{Fig 2.18: Threads Diagram of Lead-Screw} \\
+\end{center}
+    
+    \begin{center}
+    \includegraphics[width=8cm]{Graphics/lead_screw.png} \\
+    \normalsize{Fig 2.19: ACME Screw Thread Calculation} \\ 
+    \end{center}
+   
+   
+    \textbf{Strength Analysis} \\ The combined weight of the shaft and impeller, totaling approximately 30 kilograms, necessitates subjecting the system to testing conditions where a weight of 45 kilograms is applied along the axis of the lead screw threads. This testing regimen enables the observation and analysis of various mechanical parameters, including directional deformation, maximum shear stress, stress intensity, and total deformation, all of which can be visually assessed through the examination of images obtained during the testing process.
+
+\begin{itemize}
+ \item Load application-
+ \[ F_{x} = -300  N  \hspace{0.5cm} F_{y} = 0 N \hspace{0.5cm} F_{z} = 0 N \]
+
+ \item Application Point - Equivalent weight applied on the surface of the screw threads.
+ 
+ \item Boundary Condition - Fixed support on the top face of the lead screw.
+\end{itemize}
+
+\begin{center}
+     \includegraphics[width=15cm]{Graphics/Screw_Directional_Deformation.png} \\
+     \normalsize{Fig 2.20: Directional Deformation} \\
+     
+
+     \includegraphics[width=15cm]{Graphics/Screw_Maximum_Shear_Stress.png} \\
+     \normalsize{Fig 2.21: Maximum Shear Stress} \\
+     
+    
+     \includegraphics[width=15cm]{Graphics/Screw_Stress_Intensity.png} \\
+     \normalsize{Fig 2.22: Stress Intensity} \\
+     \vspace{5mm}
+    
+     \includegraphics[width=15cm]{Graphics/Screw_Total_Deformation.png} \\
+     \normalsize{Fig 2.23: Total Deformation} \\
+\end{center}
+\vspace{15mm}
+\item \textbf{Controllability and Motor Selection} \\
+\begin{center}
+    \includegraphics[width=6cm]{Graphics/Control_Motor.jpg} \\
+    Fig 2.24: 28mm 24V Brushed DC Planetary Geared DC Motor with Encoder
+\end{center}
+Considering the torque specifications and the need for low-speed operation in the lead-screw control mechanism, the utilization of a 24 V Planetary Geared DC Motor with an Encoder is deemed suitable as the control motor. This choice is made to precisely measure the extension and retraction of the shaft during operation.\cite{control_motor}
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Number of Stages & 3 Stages Reduction \\
+    Reduction Ratio & 37.7 \\
+    Gearbox Length & 31.7 mm \\
+    Max. Gear Running Torque & 25.0 kgf-cm \\
+    Max. Gear Breaking Torque & 75.0 kgf-cm \\
+    Gearing Efficiency & 73\% \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.11: Gear Specifications} \\
+\end{center} \\
+
+
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Motor Name & RS-395246000 \\
+    Rated Voltage & 24 V \\
+    No Load Current & $\le$90 mA \\
+    No Load Speed & 6000 r/min \\
+    Load Torque Current & $\le$450 mA \\
+    Load Torque Speed & 5456 r/min \\
+    Load Torque & 134 gf-cm \\
+    Load Torque Output Power & 7.5 W \\
+    Stall Torque & 1017 gf-cm \\
+    Stall Torque Current & 2720 mA \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.12: Motor Specifications} \\
+\end{center} \\
+
+\item \textbf{Material} \\ \\The major pollutants found in household wastewater are chlorides and phenols.\cite{toxic_compounds} To choose an appropriate material for the shaft of the agitator, we must ensure that it is corrosion-resistant to slurry water, lightweight, and strong. Among the array of available options for the agitator shaft, \textbf{stainless steel} stands out as one of the heaviest materials, potentially impacting the portability of the structure when used in bulkier machinery. However, it boasts a reputation for facilitating the creation of robust threads on its surface. Given that the efficacy of the lead screw mechanism hinges predominantly on the strength of the threads crafted on the internal and external surfaces of the cylinders, ensuring their durability is imperative. 
+\vspace{2mm} \\
+Additionally, stainless steel emerges as one of the most economical materials with the highest overall strength, making it exceptionally cost-effective. The alloy's exceptional strength allows even thin sheets of stainless steel to withstand considerable pressure. Stainless Steel grade 304 is one of the most corrosion-resistant materials used for machinery manufacturing that is not affected by the chlorides and phenols present in the wastewater.
+
+
+
+\textbf{Strength Analysis} \\
+To verify the structural integrity and robustness of the system, comprehensive strength simulations were conducted. These simulations aimed to ensure the substantial weight and torque exerted by the motor during the rotational operation. \\ 
+
+
+\par 
+
+
+\textbf{Bending Analysis}
+
+\begin{itemize}
+ \item Load application-
+ \[ F_{x} = -13.33  N  \hspace{0.5cm} F_{y} = 0 N \hspace{0.5cm} F_{z} = 0 N \]
+
+\item Application Point - Bottom end of the last cylindrical shell of the shaft.
+
+\item Boundary Condition - Fixed support on the top face of the first cylindrical shell of the shaft.
+\end{itemize}
+\begin{center}
+     \includegraphics[width=15cm]{Graphics/Bending_Directional_Deformation.png} \\
+     \normalsize{Fig 2.25: Directional Deformation} \\
+     \vspace{2mm}
+     \includegraphics[width=15cm]{Graphics/Bending_Equivalent_Stress.png} \\
+     \normalsize{Fig 2.26: Equivalent Stress} \\  
+     \vspace{10mm}
+     \includegraphics[width=15cm]{Graphics/Bending_Stress_Intensity.png} \\
+     \normalsize{Fig 2.27: Stress Intensity} \\
+     \vspace{10mm}
+     \includegraphics[width=15cm]{Graphics/Bending_Total_Deformation.png} \\
+     \normalsize{Fig 2.28: Total Deformation} \\
+\end{center}
+
+
+\textbf{Torsional Analysis} \\ 
+
+\begin{itemize}
+ \item Moment application-
+ \[ M_{x} = 0  N-m  \hspace{0.5cm} M_{y} = 350 N-m \hspace{0.5cm} M_{z} = 0 N-m \]
+
+\item Application Point - The bottom most cylindrical shell of the shaft.
+
+\item Boundary Condition - Fixed support on the top face of the first cylindrical shell of the shaft.
+\end{itemize}
+
+
+\begin{center}
+     \includegraphics[width=15cm]{Graphics/Torsional_Directional_Deformation.png} \\
+     \normalsize{Fig 2.29: Directional Deformation} \\
+     \vspace{10mm}
+     \includegraphics[width=15cm]{Graphics/Torsional_Equivalent_Stress.png} \\
+     \normalsize{Fig 2.30: Equivalent Stress} \\
+     \vspace{10mm}
+     \includegraphics[width=15cm]{Graphics/Torsional_Maximum_Shear_Stress.png} \\
+     \normalsize{Fig 2.31: Maximum Shear Stress} \\
+     \vspace{10mm}
+     \includegraphics[width=15cm]{Graphics/Torsional_Stress_Intensity.png} \\
+     \normalsize{Fig 2.32: Stress Intensity} \\
+     \vspace{10mm}
+     \includegraphics[width=15cm]{Graphics/Torsional_Total_Deformation.png} \\
+     \normalsize{Fig 2.33: Total Deformation} \\
+\end{center}
+ \par In this rigorous analysis, a safety factor of 1.5 was applied, taking into consideration both the weight of the lead screw of diameter 1.2 cm, constructed from stainless steel, and the torque imposed by the fluid, characterized by a density of 1.4 grams per cubic centimeter. This approach was undertaken to provide an additional margin of safety, underscoring the commitment to designing a system that not only meets but exceeds the anticipated load-bearing and torque requirements, thus bolstering its overall reliability and performance.
+
+
+
+
+\end{enumerate}
+\subsubsection{Protection}
+Stainless steel's impressive \textbf{corrosion resistance} is attributed to its chromium content, forming a \textbf{protective chromium oxide layer} upon exposure to oxygen. This passive layer acts as a barrier, preventing further corrosion and ensuring durability. Additional alloying elements like nickel and molybdenum enhance resistance, particularly in acidic or chloride-rich environments. The self-repairing nature of the oxide layer aids in mitigating damage. Stainless steel's versatility extends to various grades tailored for specific applications, making it a preferred material in industries where corrosion resistance is paramount, from construction to medical devices. Regular maintenance ensures its prolonged effectiveness in challenging environments. 
+\vspace{2mm} \\
+Austenitic stainless steel grades, such as 304 and 316, are known for their excellent resistance to chloride-induced corrosion, making them widely used in applications where exposure to saltwater or chloride-containing solutions is a concern. Also, it is resistant to corrosion from phenols, especially at ambient temperatures. 
+\vspace{2mm} \\
+\begin{center}
+    \includegraphics[width=8cm]{Graphics/Wiper_Seal.jpg}
+    \includegraphics[width=6cm]{Graphics/Wiper_Seal_CAD.png} \\
+    \normalsize{Fig 2.34: Wiper Seal that is used for waterproofing on edges} \\
+\end{center}
+To ensure that no fluid enters inside the shaft mechanism, a \textbf{wiper seal} is strategically positioned in piston assemblies to exclude contaminants, remove debris, and contribute to the overall air-tight sealing of the cylinder. A wiper seal made up of high-performance\textbf{ polyurethanes }is a specialized sealing component designed to prevent the ingress of contaminants. High-performance polyurethanes are chosen for their exceptional durability, wear resistance, and resilience in demanding operating conditions. Its design and functionality play a pivotal role in protecting the cylinders and ensuring the long-term performance of the telescopic system.\cite{wiper_seal} The wiper seal typically features a lip or scraper edge that is in contact with the moving rod or shaft of a hydraulic or pneumatic cylinder. As the rod moves in and out, the wiper seal scrapes away and wipes off any debris or contaminants that may adhere to the rod's surface. This action is crucial in maintaining the integrity of the internal seals and preventing damage to the cylinder components.\cite{wiper_seal_material}
+
+\subsection{Transmission System}
+\begin{center}
+    \includegraphics[width=8cm]{Graphics/hydraulic_motor.png} \\
+    \normalsize{Fig 2.35: Hydraulic Motor used to extend the Shaft}
+\end{center}
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Feature & Value \\
+    \hline
+    Weight & 11.26kg \\
+    Material & Aluminium 6061 \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.13: Hydraulic Motor Specifications} \\
+\end{center} \\
+
+
+\subsubsection{Hydraulic Motor}
+The TMS-160 is a hydraulic motor brand with a displacement of 126.3, a pressure of 175 Bar, and a maximum flow of 75. A hydraulic motor uses pressurized hydraulic fluid to turn a shaft. The rotating force creates torque that can be used to drive a load. The amount of torque generated by a hydraulic motor depends on the pressure and volume of the hydraulic fluid used. The displacement of a hydraulic motor is the volume of fluid required to turn the motor output shaft through one revolution. The most common units of motor displacement are in.3 or cm3 per revolution. Hydraulic motor displacement may be fixed or variable. A fixed-displacement motor provides constant torque. 
+A variable displacement motor provides variable torque and variable speed.
+\subsubsection{Design}
+Flange couplings play a pivotal role in this mechanical system by connecting the two rotating shafts, transmitting torque, and accommodating misalignments. Their robust design ensures secure connections, minimizing vibration and enhancing overall system stability. Housings provide protective enclosures for various components like electronic components, safeguarding them from environmental factors, contaminants, and mechanical damage. Additionally, housings contribute to noise reduction and thermal management. Standoffs, utilized in electronic assembly, maintain precise spacing between components, preventing electrical interference and facilitating efficient heat dissipation. In mechanical applications, standoffs act as spacers, ensuring proper alignment and structural integrity. In essence, flange couplings, housings, and standoffs collectively contribute to the reliability, efficiency, and longevity of mechanical and electronic systems by enabling secure connections, protective enclosures, and optimal spatial arrangements of components.
+\subsection{Mounting System}
+\begin{center}
+    \includegraphics[width=7cm]{Graphics/mount_top.png}
+    \includegraphics[width=7cm]{Graphics/mount_front.png} \\
+    \normalsize{Fig 2.36: Top \& Front View of the Mounting System} \\ 
+\vspace{2mm}
+\begin{tabular}{|c|c|}
+    \hline
+    Feature & Value \\
+    \hline
+    Weight & 57.8 kg \\
+    Material & Aluminium 6061 \\
+    \hline
+\end{tabular} \\
+\normalsize{Table 2.14: Mounting System Specifications} \\
+\end{center} \\
+
+\subsubsection{Adjustable Height \& Orientation}
+The mounting system is intricately designed with a unique feature wherein its three legs are capable of both extension and contraction, offering a dynamic range of stability on both level and uneven surfaces. This adaptive design enables the system to be positioned in diverse orientations, ensuring versatility in its application. The extendable and retractable nature of the legs not only provides stability but also accommodates variations in surface conditions, allowing the system to maintain a secure footing whether on flat terrain or irregular surfaces. Such a thoughtful design enhances the adaptability of the mounting system, making it well-suited for deployment in a variety of settings where stability and flexibility in positioning are essential considerations.
+\begin{center}
+    \includegraphics[width=12cm]{Graphics/Mount_Hinge.png} \\
+    \normalsize{Fig 2.37: Single Arm Join of the Mount System}
+\end{center}
+\subsubsection{Wheeled Mobility}
+In addition to its primary features, the mounting system is equipped with castor wheels, augmenting its maneuverability by enabling unrestricted rotation in all directions. This inclusion enhances the portability of the machine, allowing for seamless movement and easy setup in diverse environments. The integration of castor wheels not only facilitates smooth transportation but also contributes to the overall user-friendly nature of the system, ensuring that it can be conveniently positioned or relocated as needed. This thoughtful addition further underscores the comprehensive design considerations incorporated into the mounting system, making it a versatile and adaptable solution for scenarios where mobility, ease of setup, and flexible positioning are paramount requirements.
+\begin{center}
+    \includegraphics[width=10cm]{Graphics/mobility.png} \\
+    \normalsize{Fig 2.38: Structure with wheels open}
+\end{center} \\
+
+\begin{center}
+    \includegraphics[width=4cm]{Graphics/immobility.png} \\
+    \normalsize{Fig 2.39: Structure with wheels folded}
+\end{center} \\
+
+
+\subsubsection{Material}
+The composition of the mounting system for the shaft involves the utilization of a robust and corrosion-resistant material, specifically the \textbf{aluminum alloy 6061}. This alloy, known for its exceptional strength, has been deliberately chosen for its ability to withstand mechanical stresses and resist corrosion in various environmental conditions. By employing aluminum alloy 6061 in the construction of the mounting system, we aim to ensure not only structural durability but also long-term resilience against the corrosive effects of external elements. This strategic material selection underscores our commitment to crafting a mounting system that not only provides a secure foundation for the shaft but also exhibits longevity and reliability, even in challenging operational environments.
+
+\chapter{Working}
+\section{User Interface \& Control}
+\begin{center}
+    \includegraphics[width=12cm]{Graphics/Encoder_Control_Circuit.png} \\
+    Fig 3.1: Circuit diagram for connection between microcontroller and DC Motor with encoder
+\end{center}
+This circuit facilitates the connection between the DC motor with encoder, and the microcontroller, enabling bidirectional operation. The microprocessor is subsequently employed to receive input signals from the encoder and perform calculations to determine the length of the extended shaft. \\
+This is the process of transmitting data obtained from the encoder through a wireless microcontroller, like NodeMCU, to a smartphone via Bluetooth.
+\begin{enumerate}
+
+    \item \textbf{Connect Bluetooth Module to NodeMCU} \\ Connect a Bluetooth module (e.g., HC-05 or HC-06) to the NodeMCU. Ensure proper wiring and power supply.
+    \item \textbf{Set Up Bluetooth Communication in NodeMCU Code} \\ Write code on the NodeMCU to communicate with the Bluetooth module. For example, you might use the SoftwareSerial library.
+\begin{lstlisting}
+#include <SoftwareSerial.h>
+
+const int encoderPinA = 2;  // Connect encoder pin A to digital pin 2
+const int encoderPinB = 3;  // Connect encoder pin B to digital pin 3
+
+volatile long encoderValue = 0;
+
+SoftwareSerial bluetooth(10, 11);  // RX, TX pins for Bluetooth module
+
+void setup() {
+  Serial.begin(9600);
+  bluetooth.begin(9600);
+
+  attachInterrupt(digitalPinToInterrupt(encoderPinA), updateEncoder, CHANGE);
+}
+
+void loop() {
+  // Your main loop code here
+  // Read other sensor data or control the motor
+
+  // Send encoder data to smartphone
+  bluetooth.print("Encoder Value: ");
+  bluetooth.println(encoderValue);
+
+  delay(1000);  // Adjust the delay based on your requirements
+}
+
+void updateEncoder() {
+  if (digitalRead(encoderPinB) == HIGH) {
+    encoderValue++;
+  } else {
+    encoderValue--;
+  }
+}
+\end{lstlisting}
+    \item \textbf{Pair Bluetooth Module with Smartphone} \\ Pair the Bluetooth module with your smartphone. This typically involves going to the Bluetooth settings on your smartphone and searching for available devices.
+    \item \textbf{Develop Smartphone App} \\ Create a smartphone app (Android or iOS) that can receive data from the NodeMCU over Bluetooth. You may use platform-specific tools like Android Studio or Xcode. The app will also contain a button to control the motor which will then be sent to the motor.
+    \item \textbf{Read Data in Smartphone App} \\ In your smartphone app, read data from the Bluetooth module. You might use Bluetooth APIs provided by the mobile platform.
+\section{Operation}
+To operate the agitator, the user must unfold the tripod structure of the mounting system and position the machine above the agitation tank. Following a power connection and the establishment of a link between the microcontroller and the smartphone app, the agitator shaft can be operated with ease.
+\vspace{2mm} \\
+The microcontroller serves a dual role in the system, facilitating a seamless exchange of information. While transmitting data from the motor encoder to the smartphone application through Bluetooth connectivity, the microcontroller concurrently receives signals from the user via the application's button interface. These received signals are then processed within the microcontroller, which subsequently communicates with the motor driver to initiate specific actions based on the user's input. In this intricate interplay, the microcontroller acts as a central hub, orchestrating the bidirectional flow of information between the motor encoder, smartphone application, user input, and motor driver, ensuring a responsive and interactive control system for the motorized components by the user's commands. 
+\vspace{2mm} \\
+The formula below can be used to calculate the expansion of the cylinders according to the data of the encoder: \\
+\begin{tabular}{r l}
+    Depth &= (Encoder Count$/$Encoder Resolution)$*$Unit Conversion Factor \\
+\end{tabular}
+\par where the "Encoder Count" is the current count from the encoder, "Encoder Resolution" is the resolution of the encoder, and the "Unit Conversion Factor" is used to convert the encoder counts to the desired unit (e.g., inches, centimeters).
+
+\end{enumerate}
+
+% \chapter{Cost Estimation}
+% \section{Procurement}
+
+% \section{Manufacturing}
+% The manufacturing process of lead screw mechanisms in agitator shafts utilizing stainless steel involves several key steps. Initially, stainless steel, known for its strength and corrosion resistance, was selected as the material of choice. Precision machining techniques are then employed to create the threaded components on the internal and external surfaces of the cylinders, ensuring the formation of durable and reliable threads. The stainless steel material undergoes shaping processes, such as turning and milling, to achieve the desired dimensions and thread profiles. 
+% \vspace{2mm} \\
+% Heat treatment may be applied to enhance the mechanical properties of the stainless steel, further fortifying its strength. Quality control measures are implemented throughout the manufacturing process to ensure precise thread tolerances and overall consistency. The result is a robust lead screw mechanism within the agitator shaft, combining the exceptional strength of stainless steel with precision engineering to meet the demands of various applications in industries such as wastewater treatment and chemical processing.
+% \section{Bill of Materials}
+% \scriptsize{
+% \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|}
+%         \hline
+%          S. No. & Material & Weight Used & Cost per kg & Total Price \\
+%          \hline
+%          1 & Stainless Steel 304\\
+         
+%     \end{tabular}
+% \end{center}
+% }
+
+\chapter{Conclusion}
+\section{Quality Assurance and Testing}
+Our comprehensive research initiative delved deeply into every aspect of the agitator, leaving no facet unexplored. This encompassing exploration extended to the intricate details of the agitator's shaft mechanism, meticulous material selection, discerning impeller type considerations, and the judicious design of the control system. The research framework also incorporated a concise yet insightful study of the specific conditions pertinent to slurry water and wastewater treatment in the context of India. 
+\vspace{2mm} \\
+To validate our design choices, we conducted multiple rigorous strength analyses on a variety of materials and mechanisms, harnessing the capabilities of cutting-edge software platforms such as \textbf{Fusion 360}, \textbf{SolidWorks}, and \textbf{Ansys}. Our commitment to ensuring optimal quality and strength led us to scrutinize each component of the agitator through meticulous research and simulations, thus guaranteeing a comprehensive approach to quality assurance. 
+\vspace{2mm} \\
+For transparency and reference, all sources and materials utilized throughout this meticulous process are thoughtfully compiled and presented in the enclosed appendix.
+\section{Legal and Compliance}
+In the Indian context, legal and compliance considerations for agitators play a pivotal role in ensuring the safety, quality, and environmental responsibility of these industrial devices. Adherence to Bureau of Indian Standards (BIS) standards is fundamental, as it establishes benchmarks for the quality and safety of agitators. Compliance with the Factories Act and other relevant factory laws is imperative, safeguarding the welfare of workers involved in the operation of agitators in industrial settings. Environmental regulations require meticulous attention, considering the potential impact of agitators on air and water quality. Obtaining clearances from pollution control boards is often necessary to ensure that agitators comply with environmental standards.
+\vspace{2mm} \\
+Electrical safety standards are crucial for agitators with electrical components, contributing to the prevention of electrical hazards and ensuring user safety. Customs and import regulations come into play, especially if agitators or their components are imported, requiring adherence to trade and import/export laws. Occupational Health and Safety (OHS) compliance is essential to protect workers engaged in agitator operation and maintenance.
+\vspace{2mm} \\
+Addressing product liability laws is vital to managing issues related to the safety and performance of agitators, offering legal protection to manufacturers and users alike. Agreements between parties involved in agitator manufacturing and usage should be comprehensive, outlining responsibilities, warranties, and liabilities. ISO certification for quality management adds a layer of credibility to the manufacturing processes of agitators.
+\vspace{2mm} \\
+Furthermore, staying attuned to industry-specific practices and standards ensures that agitators align with sector expectations and operate by prevailing norms. Regular assessments of compliance, consultation with legal experts, and adaptation to evolving regulations are indispensable for businesses engaged in agitator manufacturing or usage in India.\cite{legal}
+
+% \section{Motor Specifications}
+
+% \section{Assembly and Integration}
+% The process of threading stainless steel entails the application of suitable threading techniques and tools. This method involves the precise cutting of threads into the surface of the stainless steel material, resulting in a configuration reminiscent of a screw. The threading procedure transforms the stainless steel into a versatile component that can be seamlessly joined with other elements through the use of nuts, bolts, or fittings. In the context of this agitator design, the cylinders constituting the extendible shaft are fashioned through cutting or hot rolling, during which threads are incorporated on both the inner and outer surfaces. Subsequently, these individually threaded cylinders are skillfully assembled, culminating in the creation of the extendible shaft with the ability to dynamically adjust its length.
+
+\newpage
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+% \end{multicols}
+\end{document}
+ref
